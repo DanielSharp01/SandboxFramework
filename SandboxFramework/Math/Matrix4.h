@@ -2,7 +2,7 @@
 
 #include "Vector4.h"
 
-namespace Sharp::Math
+namespace Sandbox::Math
 {
 	struct Matrix4
 	{
@@ -32,7 +32,7 @@ namespace Sharp::Math
 		Matrix4 operator/(float other) const;
 		Matrix4& operator/=(float other);
 
-		inline Vector4 getRow(int index) const
+		inline Vector4 GetRow(int index) const
 		{
 			return Vector4(cells[index], cells[index + 4], cells[index + 8], cells[index + 12]);
 		}

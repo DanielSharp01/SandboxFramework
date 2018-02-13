@@ -3,7 +3,7 @@
 #include "Vector4.h"
 #include "Matrix4.h"
 
-namespace Sharp::Math
+namespace Sandbox::Math
 {
 	Vector2::Vector2(float x, float y)
 		: x(x), y(y)
@@ -93,17 +93,17 @@ namespace Sharp::Math
 		return *this;
 	}
 
-	float Vector2::dot(const Vector2& other)
+	float Vector2::Dot(const Vector2& other) const
 	{
 		return x * other.x + y * other.y;
 	}
 
-	float Vector2::perpDot(const Vector2& other)
+	float Vector2::PerpDot(const Vector2& other) const
 	{
 		return x * other.y - y * other.x;
 	}
 
-	Vector2 Vector2::transform(const Matrix4& other)
+	Vector2 Vector2::Transform(const Matrix4& other) const
 	{
 		return (Vector2)(other * (Vector4)(*this));
 	}

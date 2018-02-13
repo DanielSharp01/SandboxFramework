@@ -2,7 +2,7 @@
 
 #include <memory>
 
-namespace Sharp::Math
+namespace Sandbox::Math
 {
 	Matrix4::Matrix4()
 		: Matrix4(1)
@@ -71,7 +71,7 @@ namespace Sharp::Math
 		Matrix4 res;
 		for (int i = 0; i < 16; i++)
 		{
-			res.cells[i] = getRow(i / 4).dot(other.columns[i % 4]);
+			res.cells[i] = GetRow(i / 4).Dot(other.columns[i % 4]);
 		}
 
 		return res;
@@ -80,7 +80,7 @@ namespace Sharp::Math
 	{
 		for (int i = 0; i < 16; i++)
 		{
-			cells[i] = getRow(i / 4).dot(other.columns[i % 4]);
+			cells[i] = GetRow(i / 4).Dot(other.columns[i % 4]);
 		}
 
 		return *this;
@@ -88,7 +88,7 @@ namespace Sharp::Math
 
 	Vector4 Matrix4::operator*(const Vector4& other) const
 	{
-		return Vector4(getRow(0).dot(other), getRow(1).dot(other), getRow(2).dot(other), getRow(3).dot(other));
+		return Vector4(GetRow(0).Dot(other), GetRow(1).Dot(other), GetRow(2).Dot(other), GetRow(3).Dot(other));
 	}
 
 	Matrix4 Matrix4::operator*(float other) const

@@ -1,6 +1,6 @@
 #pragma once
 
-namespace Sharp::Math
+namespace Sandbox::Math
 {
 	struct Vector2;
 	struct Vector3;
@@ -30,7 +30,7 @@ namespace Sharp::Math
 		Vector4 operator/(float other) const;
 		Vector4& operator/=(float other);
 
-		float dot(const Vector4& other);
-		Vector4 transform(const Matrix4& other);
+		float Dot(const Vector4& other) const;
+		Vector4 Transform(const Matrix4& other) const;
 	};
 }

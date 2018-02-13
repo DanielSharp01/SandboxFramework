@@ -2,7 +2,7 @@
 
 #include <math.h>
 
-namespace Sharp::Math
+namespace Sandbox::Math
 {
 	struct Vector3;
 	struct Vector4;
@@ -32,14 +32,14 @@ namespace Sharp::Math
 		Vector2 operator/(float other) const;
 		Vector2& operator/=(float other);
 
-		float dot(const Vector2& other);
-		float perpDot(const Vector2& other);
+		float Dot(const Vector2& other) const;
+		float PerpDot(const Vector2& other) const;
 
-		inline float getAngle() const
+		inline float GetAngle() const
 		{
 			return atan2(y, x);
 		}
 
-		Vector2 transform(const Matrix4& other);
+		Vector2 Transform(const Matrix4& other) const;
 	};
 }

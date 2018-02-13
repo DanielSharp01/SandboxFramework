@@ -164,7 +164,10 @@
     <ClCompile Include="Math\Vector2.cpp" />
     <ClCompile Include="Math\Vector3.cpp" />
     <ClCompile Include="Math\Vector4.cpp" />
-    <ClCompile Include="Windowing\GameWindow.cpp" />
+    <ClCompile Include="Platform\GameWindow.cpp" />
+    <ClCompile Include="Utils\ConsoleControl.cpp" />
+    <ClCompile Include="Utils\Logging.cpp" />
+    <ClCompile Include="Utils\StringFuncs.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Math\Matrix4.h" />
@@ -173,7 +176,10 @@
     <ClInclude Include="Math\Vector2.h" />
     <ClInclude Include="Math\Vector3.h" />
     <ClInclude Include="Math\Vector4.h" />
-    <ClInclude Include="Windowing\GameWindow.h" />
+    <ClInclude Include="Platform\GameWindow.h" />
+    <ClInclude Include="Utils\ConsoleControl.h" />
+    <ClInclude Include="Utils\Logging.h" />
+    <ClInclude Include="Utils\StringFuncs.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="SandboxFramework.rc" />

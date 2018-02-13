@@ -1,33 +1,31 @@
 #include "GameWindow.h"
 #include <iostream>
+#include "..\Utils\Logging.h"
 
-namespace Sharp::Windowing
+namespace Sandbox::Platform
 {
-	GameWindow::GameWindow()
+	GameWindow::GameWindow(int width, int height, const char* title)
 	{
+		windowWidth = width;
+		windowHeight = height;
+
 		window = nullptr;
 		if (!glfwInit())
 		{
-			//TODO: LOGGING
-			std::cout << "GLFW failed to initialize!" << std::endl;
+			Logging::LogManager::Get().Log(Logging::Error, "INIT", "GLFW failed to initialize!");
 			return;
 		}
-		width = 1600;
-		height = 900;
-		title = "Back to C++";
 		window = glfwCreateWindow(width, height, title, NULL, NULL);
 		if (!window)
 		{
-			//TODO: LOGGING
-			std::cout << "GLFW failed create a window!" << std::endl;
+			Logging::LogManager::Get().Log(Logging::Error, "INIT", "GLFW failed to create window!");
 			return;
 		}
 
 		glfwMakeContextCurrent(window);
 		if (glewInit() != GLEW_OK)
 		{
-			//TODO: LOGGING
-			std::cout << "GLEW failed to initialize!" << std::endl;
+			Logging::LogManager::Get().Log(Logging::Error, "INIT", "GLEW failed to initialize!");
 			return;
 		}
 	}
@@ -38,25 +36,23 @@ namespace Sharp::Windowing
 		glfwTerminate();
 	}
 
-	void GameWindow::close()
+	void GameWindow::Close()
 	{
 		glfwSetWindowShouldClose(window, true);
 	}
 
-	bool GameWindow::run()
+	void GameWindow::Run()
 	{
-		if (window == nullptr) return false;
+		if (window == nullptr) return;
 
 		while (!glfwWindowShouldClose(window))
 		{
 			double delta = glfwGetTime() - lastTime;
-			update(delta);
-			draw(delta);
+			Update(delta);
+			Draw(delta);
 			lastTime = glfwGetTime();
 			glfwPollEvents();
 			glfwSwapBuffers(window);
 		}
-
-		return true;
 	}
 }

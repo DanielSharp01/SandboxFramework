@@ -1,11 +1,11 @@
 #pragma once
 
-#include "Windowing\GameWindow.h"
+#include "Platform\GameWindow.h"
 #include <unordered_map>
 
 typedef int Shader;
 
-class MyGameWindow : public Sharp::Windowing::GameWindow
+class MyGameWindow : public Sandbox::Platform::GameWindow
 {
 private:
 	std::unordered_map<std::string, Shader*> shaders;
@@ -15,7 +15,7 @@ public:
 	MyGameWindow();
 	virtual ~MyGameWindow();
 	
-	virtual void update(double delta) override;
-	virtual void draw(double delta) override;
+	virtual void Update(double delta) override;
+	virtual void Draw(double delta) override;
 };
 
