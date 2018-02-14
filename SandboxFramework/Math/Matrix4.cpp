@@ -164,7 +164,7 @@ namespace Sandbox::Math
 		return CreateScale(vec.x, vec.y, vec.z);
 	}
 
-	static Matrix4 CreateRotationX(float rad)
+	Matrix4 Matrix4::CreateRotationX(float rad)
 	{
 		float c = cosf(rad);
 		float s = sinf(rad);
@@ -177,7 +177,7 @@ namespace Sandbox::Math
 		return mat;
 	}
 
-	static Matrix4 CreateRotationY(float rad)
+	Matrix4 Matrix4::CreateRotationY(float rad)
 	{
 		float c = cosf(rad);
 		float s = sinf(rad);
@@ -190,7 +190,7 @@ namespace Sandbox::Math
 		return mat;
 	}
 
-	static Matrix4 CreateRotationZ(float rad)
+	Matrix4 Matrix4::CreateRotationZ(float rad)
 	{
 		float c = cosf(rad);
 		float s = sinf(rad);
@@ -229,5 +229,26 @@ namespace Sandbox::Math
 	Matrix4 Matrix4::CreateAxisRotation(float rad, Vector3 axisStartPoint, Vector3 axisEndPoint)
 	{
 		return CreateTranslation(-axisStartPoint) * CreateAxisRotation(rad, (axisEndPoint - axisStartPoint).Normalize()) * CreateTranslation(axisStartPoint);
+	}
+
+	Matrix4 Matrix4::CreatePerspective(float fov, float aspect, float near, float far)
+	{
+		Matrix4 mat;
+		float t = 1.0f / tanf(fov/2);
+		mat.columns[0] = Vector4(t * aspect, 0, 0, 0);
+		mat.columns[1] = Vector4(0, t, 0, 0);
+		mat.columns[2] = Vector4(0, 0, (far + near) / (near - far), -1);
+		mat.columns[3] = Vector4(0, 0, (2 * far * near) / (far - near), 0);
+		return mat;
+	}
+
+	Matrix4 Matrix4::CreateOrthographic(float top, float bottom, float left, float right, float near, float far)
+	{
+		Matrix4 mat;
+		mat.columns[0] = Vector4(2 / (right-left), 0, 0, 0);
+		mat.columns[1] = Vector4(0, 2 / (top - bottom), 0, 0);
+		mat.columns[2] = Vector4(0, 0, 2 / (near - far), 0);
+		mat.columns[3] = Vector4((right+left) / (left - right), (top + bottom) / (bottom - top), (far + near) / (near - far), 0);
+		return mat;
 	}
 }
