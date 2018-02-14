@@ -7,6 +7,7 @@ GameFramework designed to contain all essential functionality
 - [ ] Material
 - [ ] Higher Level Shader Abstraction
 - [ ] ContentManagement system
+- [ ] Sprite, SpriteFont
 - [ ] Renderer/RenderFragment
 - [ ] Light
 - [ ] Post processing
@@ -15,6 +16,7 @@ GameFramework designed to contain all essential functionality
 - [ ] Batching
 - [ ] Instancing
 - [ ] Basic non PBR shader model
+- [ ] BMFont text rendering (preferrably MSDF)
 - [ ] HDR
 - [ ] PBR
 - [ ] IBL
@@ -43,8 +45,7 @@ GameFramework designed to contain all essential functionality
 - [ ] Flexible Color/Depth buffer
 - [ ] Multi sample support
 - [ ] Close event
-- [ ] Keyboard Input
-- [ ] Mouse Input
+- [ ] Input event system (Keyboard/Mouse) -> Framework should also have key mapping later down the line
 
 ## Utils Library Progress
 - [x] Logging (maybe a little too complicated implementation-wise, usage-wise ay ok)
