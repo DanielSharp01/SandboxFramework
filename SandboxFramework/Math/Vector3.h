@@ -17,6 +17,7 @@ namespace Sandbox::Math
 		Vector3 operator+(const Vector3& other) const;
 		Vector3& operator+=(const Vector3& other);
 
+		Vector3 operator-() const;
 		Vector3 operator-(const Vector3& other) const;
 		Vector3& operator-=(const Vector3& other);
 
@@ -32,6 +33,13 @@ namespace Sandbox::Math
 
 		float Dot(const Vector3& other) const;
 		Vector3 Cross(const Vector3& other) const;
+		Vector3 Normalize() const;
+
+		inline float Length() const
+		{
+			return sqrtf(x * x + y * y + z * z);
+		}
+
 		Vector3 Transform(const Matrix4& other) const;
 	};
 }

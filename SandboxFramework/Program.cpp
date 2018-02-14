@@ -9,7 +9,6 @@
 int main()
 {
 	using namespace Sandbox;
-
 	
 
 	ansi::EnableVirtualWinTerminal();

@@ -1,5 +1,6 @@
 #include "Matrix4.h"
 
+#include "Vector3.h"
 #include <memory>
 
 namespace Sandbox::Math
@@ -131,5 +132,102 @@ namespace Sandbox::Math
 		}
 
 		return *this;
+	}
+
+	Matrix4 Matrix4::CreateTranslation(float x, float y, float z)
+	{
+		Matrix4 mat;
+		mat.columns[0] = Vector4(1, 0, 0, 0);
+		mat.columns[1] = Vector4(0, 1, 0, 0);
+		mat.columns[2] = Vector4(0, 0, 1, 0);
+		mat.columns[3] = Vector4(x, y, z, 1);
+		return mat;
+	}
+
+	Matrix4 Matrix4::CreateTranslation(Vector3 vec)
+	{
+		return CreateTranslation(vec.x, vec.y, vec.z);
+	}
+
+	Matrix4 Matrix4::CreateScale(float x, float y, float z)
+	{
+		Matrix4 mat;
+		mat.columns[0] = Vector4(x, 0, 0, 0);
+		mat.columns[1] = Vector4(0, y, 0, 0);
+		mat.columns[2] = Vector4(0, 0, z, 0);
+		mat.columns[3] = Vector4(0, 0, 0, 1);
+		return mat;
+	}
+
+	Matrix4 Matrix4::CreateScale(Vector3 vec)
+	{
+		return CreateScale(vec.x, vec.y, vec.z);
+	}
+
+	static Matrix4 CreateRotationX(float rad)
+	{
+		float c = cosf(rad);
+		float s = sinf(rad);
+
+		Matrix4 mat;
+		mat.columns[0] = Vector4(1, 0, 0, 0);
+		mat.columns[1] = Vector4(0, c, -s, 0);
+		mat.columns[2] = Vector4(0, s, c, 0);
+		mat.columns[3] = Vector4(0, 0, 0, 1);
+		return mat;
+	}
+
+	static Matrix4 CreateRotationY(float rad)
+	{
+		float c = cosf(rad);
+		float s = sinf(rad);
+
+		Matrix4 mat;
+		mat.columns[0] = Vector4(c, 0, s, 0);
+		mat.columns[1] = Vector4(0, 1, 0, 0);
+		mat.columns[2] = Vector4(-s, 0, c, 0);
+		mat.columns[3] = Vector4(0, 0, 0, 1);
+		return mat;
+	}
+
+	static Matrix4 CreateRotationZ(float rad)
+	{
+		float c = cosf(rad);
+		float s = sinf(rad);
+
+		Matrix4 mat;
+		mat.columns[0] = Vector4(c, -s, 0, 0);
+		mat.columns[1] = Vector4(s, c, 0, 0);
+		mat.columns[2] = Vector4(0, 0, 1, 0);
+		mat.columns[3] = Vector4(0, 0, 0, 1);
+		return mat;
+	}
+
+	Matrix4 Matrix4::CreateAxisRotation(float rad, Vector3 axis)
+	{
+		Matrix4 mat;
+		float c = cosf(rad);
+		float omc = 1 - c;
+		float s = sinf(rad);
+		float u2 = axis.x * axis.x;
+		float v2 = axis.y * axis.y;
+		float w2 = axis.z * axis.z;
+		float uvomc = omc * axis.x * axis.y;
+		float uwomc = omc * axis.x * axis.z;
+		float vwomc = omc * axis.y * axis.z;
+		float us = axis.x * s;
+		float vs = axis.y * s;
+		float ws = axis.z * s;
+
+		mat.columns[0] = Vector4(u2 + (1 - u2)*c, uvomc + ws, uwomc - vs, 0);
+		mat.columns[1] = Vector4(uvomc - ws, v2 + (1 - v2)*c, vwomc + us, 0);
+		mat.columns[2] = Vector4(uwomc + vs, vwomc - us, w2 + (1 - w2)*c, 0);
+		mat.columns[3] = Vector4(0, 0, 0, 1);
+		return mat;
+	}
+
+	Matrix4 Matrix4::CreateAxisRotation(float rad, Vector3 axisStartPoint, Vector3 axisEndPoint)
+	{
+		return CreateTranslation(-axisStartPoint) * CreateAxisRotation(rad, (axisEndPoint - axisStartPoint).Normalize()) * CreateTranslation(axisStartPoint);
 	}
 }

@@ -33,6 +33,11 @@ namespace Sandbox::Math
 		return *this;
 	}
 
+	Vector2 Vector2::operator-() const
+	{
+		return Vector2(-x, -y);
+	}
+
 	Vector2 Vector2::operator-(const Vector2& other) const
 	{
 		return Vector2(x - other.x, y - other.y);
@@ -101,6 +106,11 @@ namespace Sandbox::Math
 	float Vector2::PerpDot(const Vector2& other) const
 	{
 		return x * other.y - y * other.x;
+	}
+
+	Vector2 Vector2::Normalize() const
+	{
+		return *this / Length();
 	}
 
 	Vector2 Vector2::Transform(const Matrix4& other) const

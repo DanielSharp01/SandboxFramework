@@ -39,6 +39,11 @@ namespace Sandbox::Math
 		return *this;
 	}
 
+	Vector4 Vector4::operator-() const
+	{
+		return Vector2(-x, -y, -z, -w);
+	}
+
 	Vector4 Vector4::operator-(const Vector4& other) const
 	{
 		return Vector4(x - other.x, y - other.y, z - other.z, w - other.w);
@@ -112,6 +117,11 @@ namespace Sandbox::Math
 	float Vector4::Dot(const Vector4& other) const
 	{
 		return x * other.x + y * other.y + z * other.z + w * other.w;
+	}
+
+	Vector4 Vector4::Normalize() const
+	{
+		return *this / Length();
 	}
 
 	Vector4 Vector4::Transform(const Matrix4& other) const

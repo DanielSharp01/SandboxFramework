@@ -19,6 +19,7 @@ namespace Sandbox::Math
 		Vector2 operator+(const Vector2& other) const;
 		Vector2& operator+=(const Vector2& other);
 
+		Vector2 operator-() const;
 		Vector2 operator-(const Vector2& other) const;
 		Vector2& operator-=(const Vector2& other);
 
@@ -34,6 +35,12 @@ namespace Sandbox::Math
 
 		float Dot(const Vector2& other) const;
 		float PerpDot(const Vector2& other) const;
+		Vector2 Normalize() const;
+
+		inline float Length() const
+		{
+			return sqrtf(x * x + y * y);
+		}
 
 		inline float GetAngle() const
 		{

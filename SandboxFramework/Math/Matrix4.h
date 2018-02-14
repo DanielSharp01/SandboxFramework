@@ -36,5 +36,21 @@ namespace Sandbox::Math
 		{
 			return Vector4(cells[index], cells[index + 4], cells[index + 8], cells[index + 12]);
 		}
+
+		static Matrix4 CreateTranslation(float x, float y, float z);
+		static Matrix4 CreateTranslation(Vector3 vec);
+
+		static Matrix4 CreateScale(float x, float y, float z);
+		static Matrix4 CreateScale(Vector3 vec);
+
+		static Matrix4 CreateRotationX(float rad);
+		static Matrix4 CreateRotationY(float rad);
+		static Matrix4 CreateRotationZ(float rad);
+
+		static Matrix4 CreateAxisRotation(float rad, Vector3 axis);
+		static Matrix4 CreateAxisRotation(float rad, Vector3 axisStartPoint, Vector3 axisEndPoint);
+
+		static Matrix4 CreatePerspective(float fov, float aspect, float near, float far);
+		static Matrix4 CreateOrthographic(float top, float bottom, float left, float right, float near, float far);
 	};
 }
