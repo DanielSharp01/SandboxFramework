@@ -41,7 +41,7 @@ namespace Sandbox::Math
 
 	Vector4 Vector4::operator-() const
 	{
-		return Vector2(-x, -y, -z, -w);
+		return Vector4(-x, -y, -z, -w);
 	}
 
 	Vector4 Vector4::operator-(const Vector4& other) const
